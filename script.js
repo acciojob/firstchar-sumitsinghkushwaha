@@ -1,18 +1,27 @@
-function firstChar(text) {
-  // Trim leading and trailing spaces
-  const trimmedText = text.trim();
+function firstNonRepeatedChar(text) {
+  // Create an object to store character frequencies
+  const charFrequency = {};
 
-  // Check if the trimmed text is not empty
-  if (trimmedText !== '') {
-    // Return the first character of the trimmed text
-    return trimmedText[0];
-  } else {
-    // Return an empty string if the input only contains spaces
-    return '';
+  // Iterate through the characters in the input string
+  for (const char of text) {
+    // Increment the frequency count for each character
+    charFrequency[char] = (charFrequency[char] || 0) + 1;
   }
+
+  // Iterate through the characters in the input string again
+  for (const char of text) {
+    // Check if the current character has a frequency of 1 (non-repeated)
+    if (charFrequency[char] === 1) {
+      // Return the first non-repeated character
+      return char;
+    }
+  }
+
+  // Return null if there is no non-repeated character
+  return null;
 }
 
 // Do not change the code below
 
 const text = prompt("Enter text:");
-alert(firstChar(text));
+alert(firstNonRepeatedChar(text));
